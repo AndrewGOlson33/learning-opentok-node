@@ -97,8 +97,12 @@ router.get('/room/:name', function (req, res) {
  */
 router.post('/archive/start', function (req, res) {
   var json = req.body;
+  var archiveOptions = {
+    name: findRoomFromSessionId(sessionId),
+    outputMode: 'individual'
+    };
   var sessionId = json.sessionId;
-  opentok.startArchive(sessionId, { name: findRoomFromSessionId(sessionId) }, function (err, archive) {
+  opentok.startArchive(sessionId, archiveOptions, function (err, archive) {
     if (err) {
       console.error('error in startArchive');
       console.error(err);
@@ -109,6 +113,7 @@ router.post('/archive/start', function (req, res) {
     res.send(archive);
   });
 });
+
 
 /**
  * POST /archive/:archiveId/stop
