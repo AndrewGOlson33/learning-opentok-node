@@ -98,8 +98,8 @@ router.get('/room/:name', function (req, res) {
 router.post('/archive/start', function (req, res) {
   var json = req.body;
   var archiveOptions = {
-    name: findRoomFromSessionId(sessionId),
-    outputMode: 'individual'
+    name: 'stuff'//findRoomFromSessionId(sessionId),
+    //outputMode: 'individual'//
     };
   var sessionId = json.sessionId;
   opentok.startArchive(sessionId, archiveOptions, function (err, archive) {
